@@ -1,8 +1,31 @@
+import { bindActionCreators } from "redux";
+
+import {START_FETCH, SUCCESFUL_FETCH, FAILED_FETCH, ADDING_SMURF, ADD_ERROR}  from '../actions/index';
+
 
 export const initialState = {
+    smurfs: [],
+    isLoading: false,
+    error: "",
 }
 
-const reducer = ()=>{
+const reducer = (state=initialState, action) => {
+    switch(action.type) {
+        case START_FETCH:
+            return(console.log("START_FETCH"));
+        case SUCCESFUL_FETCH:
+            return(console.log("SUCCESFUL_FETCH"));
+        case FAILED_FETCH:
+            return(console.log("FAILED_FETCH"));
+        case ADDING_SMURF:
+            return({...state, smurfs: [...state.smurfs, action.payload]});
+        case ADD_ERROR:
+            return({...state, error:action.payload});
+        default:
+            return state;
+        
+                
+    }
 }
 
 //**************DO NOT EDIT ANY CODE BEYOND THIS POINT**************//
