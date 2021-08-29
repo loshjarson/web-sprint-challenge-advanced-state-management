@@ -6,19 +6,20 @@ export const FAILED_FETCH = 'FAILED_FETCH';
 export const ADDING_SMURF = 'ADDING_SMURF';
 export const ADD_ERROR = 'ADD_ERROR';
 
+
 export const fetchSmurfs = () => dispatch => {
     dispatch({type:START_FETCH})
     axios
     .get('http://localhost:3333/smurfs')
     .then(res =>
-      dispatch({ type: SUCCESFUL_FETCH, payload: res.data.results })
+      dispatch({ type: SUCCESFUL_FETCH, payload: res.data })
     )
     .catch(err => dispatch({ type: FAILED_FETCH, payload: err }));
 }
-export const addSmurf = (newSmurf) => {
+export function addSmurf(newSmurf) {
     return {type:ADDING_SMURF, payload: newSmurf}
 }
-export const setError = (error) => {
+export function setError(error) {
     return {type:ADD_ERROR, payload: error}
 }
 //Task List:

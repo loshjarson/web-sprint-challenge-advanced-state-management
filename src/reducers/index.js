@@ -10,21 +10,22 @@ export const initialState = {
 }
 
 const reducer = (state=initialState, action) => {
+    console.log('reducer', action);
     switch(action.type) {
         case START_FETCH:
-            return(console.log("START_FETCH"));
+            return {...state, isLoading: true};
         case SUCCESFUL_FETCH:
-            return(console.log("SUCCESFUL_FETCH"));
+            return {...state, smurfs: action.payload, isLoading: false};
         case FAILED_FETCH:
-            return(console.log("FAILED_FETCH"));
+            return {...state, error: action.payload, isLoading: false};
         case ADDING_SMURF:
-            return({...state, smurfs: [...state.smurfs, action.payload]});
+            console.log([...state.smurfs, action.payload])
+            return {...state, smurfs: [...state.smurfs, action.payload]};
         case ADD_ERROR:
-            return({...state, error:action.payload});
+            return {...state, error: action.payload};
         default:
             return state;
-        
-                
+               
     }
 }
 
